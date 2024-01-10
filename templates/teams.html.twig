@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equips
+{% endblock %}
+{% block stylesheets %}
+
+	<link rel="stylesheet" href="{{ asset('css/estilsTeams.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+
+	{% if equip %}
+		<h1 id="titolEquip">Dades de l'Equip {{equip.codi}}</h1>
+		<p class="paragrafEquip">
+			<img class="imatgeEquip" src="{{ asset('Impact/assets/img/team/team-3.jpg') }}" alt=""></p>
+
+		<div class="paragrafEquip">
+			<p class="paragrafEquip"><strong>Codi:</strong>
+				{{ equip.codi }}</p>
+			<p class="paragrafEquip"><strong>Nom:</strong>
+				{{ equip.nom }}</p>
+			<p class="paragrafEquip"><strong>Cicle:</strong>
+				{{ equip.cicle }}</p>
+			<p class="paragrafEquip"><strong>Curs:</strong>
+				{{ equip.curs }}</p>
+			<div class="paragrafEquip"><strong>Membres:</strong>
+				<ul>
+					{% for membre in equip.membres %}
+						<p class="paragrafEquip" style='background-color:grey'>{{ membre }}</p>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	{% else %}
+		<h1 id="titolEquip">Dades Equip</h1>
+		<p class="paragrafEquip">
+			<img class="imatgeEquip" src="{{ asset('Impact/assets/img/team/team-4.jpg') }}" alt=""></p>
+			<div class="paragrafEquip"><strong style='color:red'>Equip no trobat</strong></div>
+	{% endif %}
+	<div class="paragrafEquip">
+	<img id='imgMenuda' src="{{ asset('Impact/assets/img/home.png') }}" onclick="window.location='{{ path('inici')}}'" alt="">
+	<a href ="{{ path('inici')}}">Tornar a l'inici</a>
+	</div>
+{% endblock %}

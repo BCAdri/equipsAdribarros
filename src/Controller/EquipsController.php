@@ -1,8 +1,10 @@
 <?php
 namespace App\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-class EquipController
+
+class EquipsController extends AbstractController
 {
     private $contactes = array(
         array("codi" => 1, "nom" => "Equip Roig",
@@ -17,7 +19,7 @@ class EquipController
     );
       #[Route('/equip/{codi}',name:'dades_equip')]
      
-    public function fitxa($codi)
+    public function fitxa($codi=1)
     {
         $resultat = array_filter($this->contactes,
         function($contacte) use ($codi)
@@ -26,15 +28,21 @@ class EquipController
         });
         if (count($resultat) > 0)
         {
-            $resposta="";
+            /*$resposta="";
             $resultat = array_shift($resultat);
             $resposta .= "<ul><li>" .$resultat["nom"] . "</li>" .
             "<li>" .$resultat["cicle"] . "</li>" .
             "<li>" .$resultat["curs"] . "</li></ul>";
-            return new Response("<html><body>$resposta</body></html>");
+            return new Response("<html><body>$resposta</body></html>");*/
+            $resultat = array_shift($resultat);
+            return $this->render('teams.html.twig', 
+            ['equip' => $resultat] );
         }
         else
-        return new Response("No s'ha trobat el codi de l'equip $codi");
+         return $this->render('teams.html.twig', [
+                'equip' => NULL
+            ]);
+        /*return new Response("No s'ha trobat el codi de l'equip $codi");*/
     }
 }
 ?>

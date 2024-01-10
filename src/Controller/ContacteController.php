@@ -2,7 +2,9 @@
 namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-class ContacteController
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+class ContacteController extends AbstractController
 {
     private $contactes = array(
         array("codi" => 1, "nom" => "Salvador Sala",
@@ -27,15 +29,20 @@ class ContacteController
         });
         if (count($resultat) > 0)
         {
-            $resposta="";
+            /*$resposta="";
             $resultat = array_shift($resultat);
             $resposta .= "<ul><li>" .$resultat["nom"] . "</li>" .
             "<li>" .$resultat["telefon"] . "</li>" .
             "<li>" .$resultat["email"] . "</li></ul>";
-            return new Response("<html><body>$resposta</body></html>");
+            return new Response("<html><body>$resposta</body></html>");*/
+
+            return $this->render('fitxa_contacte.html.twig',
+            array('contacte'=>array_shift($resultat)));
         }
         else
-        return new Response("Contacte no trobat");
+        /*return new Response("Contacte no trobat");*/
+        return $this->render('fitxa_contacte.html.twig',
+        array('contacte'=>NULL));
     }
 
     #[Route('/contacte/{text}',name:'buscar_contacte')]
@@ -47,14 +54,16 @@ class ContacteController
         {
          return strpos($contacte["nom"],$text) !== FALSE;   
         });
-        $resposta="";
+        /*$resposta="";*/
         if (count($resultat) > 0)
         {
-        foreach($resultat as $contacte)
+       /* foreach($resultat as $contacte)
             $resposta .= "<ul><li>" .$contacte["nom"] . "</li>" .
             "<li>" .$contacte["telefon"] . "</li>" .
             "<li>" .$contacte["email"] . "</li></ul>";
-            return new Response("<html><body>$resposta</body></html>");
+            return new Response("<html><body>$resposta</body></html>");*/
+            return $this->render('llista_contactes.html.twig',
+            array('contactes'=>$resultat));
         }
         else
         return new Response("No s'han trobat contactes");

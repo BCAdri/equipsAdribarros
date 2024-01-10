@@ -1,0 +1,11 @@
+{% extends 'base.html.twig'%}
+
+{% block title %} Contacte {% endblock %}
+
+{% block body %}
+
+<h1>Contactes</h1>
+<h2>Benvingut a la web de contactes</h2>
+<p>Pagina d'inici</hp>
+
+{% endblock %}
