@@ -14,4 +14,11 @@
 <p id="paragrafInici">Inici programa gestio d'equips 2n de DAW: Adri BArroso<br>
 <img class="imatgeInici" src="{{ asset('Impact/assets/img/about-2.jpg') }}" onclick="window.location='{{ path('dades_equip', {'codi': 1}) }}'">
 
+
+{% for equip in equips %}
+    <br>
+	<a href="{{ path('dades_equip', {'codi': equip.codi}) }}">{{ equip.nom }}</a>
+{% endfor %}
+
 {% endblock %}
+

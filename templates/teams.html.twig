@@ -13,7 +13,7 @@
 	{% if equip %}
 		<h1 id="titolEquip">Dades de l'Equip {{equip.codi}}</h1>
 		<p class="paragrafEquip">
-			<img class="imatgeEquip" src="{{ asset('Impact/assets/img/team/team-3.jpg') }}" alt=""></p>
+			<img class="imatgeEquip" src="{{ asset('Impact/assets/img/team/team-'~equip.codi~'.jpg') }}" alt=""></p>
 
 		<div class="paragrafEquip">
 			<p class="paragrafEquip"><strong>Codi:</strong>
@@ -35,7 +35,7 @@
 	{% else %}
 		<h1 id="titolEquip">Dades Equip</h1>
 		<p class="paragrafEquip">
-			<img class="imatgeEquip" src="{{ asset('Impact/assets/img/team/team-4.jpg') }}" alt=""></p>
+			<img class="imatgeEquip" src="{{ asset('Impact/assets/img/about.jpg') }}" alt=""></p>
 			<div class="paragrafEquip"><strong style='color:red'>Equip no trobat</strong></div>
 	{% endif %}
 	<div class="paragrafEquip">
